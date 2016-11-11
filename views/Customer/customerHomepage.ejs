@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Homepage</title>
+
+<script>
+//var mainApp= angular.module("mainApp", []);
+
+/* mainApp.controller('Ctrl1', function($scope){
+	a=0;b=0;
+	$scope.lattitude="abhi";
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			console.log("going in here");
+			a=position.coords.longitude;
+			console.log(a);
+			//$scope.lattitude="abhi";
+			//$scope.longitude=position.coords.longitude;
+		});
+	} else {
+		alert("Geolocation is not supported by this browser.");
+	}
+	$scope.longitude;
+})
+ */</script>
+
+</head>
+<body>
+<div>
+	<!-- Navigator -->
+
+	<!-- Container -->
+	<div class="container">
+		<form action="/search" method="POST">
+			<!-- Time-based Welcome Message -->
+			<div align="center">
+				<h1>Welcome for Lunch</h1>
+			</div>
+
+
+			<!-- Select the distance/range -->
+			<div align="center">
+				<label for="distance">Distance</label> <input type="range"
+					name="distance" id="distance" min="500"  max="5000"
+					step="100">
+			</div>
+
+			<br>
+
+			<!-- Select Type of Cuisine -->
+			<div align="center">
+				<input list="cuisine" name="cuisine" style="width: 300px;">
+				<datalist id="cuisine">
+					<option value="American">
+					<option value="British">
+					<option value="Caribbean">
+					<option value="Chinese">
+					<option value="French">
+					<option value="Greek">
+					<option value="Indian">
+					<option value="Italian">
+					<option value="Japanese">
+					<option value="Mediterranean">
+					<option value="Mexican">
+					<option value="Moroccan">
+					<option value="Spanish">
+					<option value="Thai">
+					<option value="Turkish">
+					<option value="Vietnamese">
+				</datalist>
+			</div>
+
+			<br>
+
+			<!-- Position -->
+			<div align="center">
+			<label for="location">Enter your location</label>
+			<input type="text" name="location" id="location"></div>
+			
+			<br>
+
+			<!-- Search button -->
+			<div align="center">
+				<button type="Submit" class="btn btn-success">Search</button>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>
+
+
