@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Customer || Login</title>
+<script>
+$(document).ready(function() {
+	
+	var status=<%- JSON.stringify(status) %>;
+	console.log("status: "+status);
+	if(status==0){
+		console.log("in here");
+		document.getElementById("error").style.display = 'block';	 
+	}
+	else{
+		document.getElementById("error").style.display = 'none';
+	}
+	
+});
+
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="jumbotron" id="jumbo2">
+			
+			<h2 id="title">shoppingAssistant</h2>
+			<h4 id="title2"></h4>
+			<button onclick="/customerSignup" class="btn btn-success" id="signup">SignUp</button>
+		</div>
+		<div class="container-full">
+	<div class="container-fluid" id="loginBox">
+		<div class="row">
+		<div class="col-md-3"></div>
+			<div class="col-md-6">
+			<div id="login-box">
+			<div id="error" style="display: none;"><p>Username/password mismatch</p></div>
+			<form method="post" action="/checkCustLoginDetails">
+				<input class="form-group" type="text"  id="userid"
+								placeholder="Enter email" name="userid">
+					<br>
+				<input class="form-group" type="password"  id="password"
+							placeholder="Enter password" name="password">
+				<br><br>
+					<input class="form-group" type="submit" class="btn btn-success"  id="login"
+						value="Login" />
+					</form>
+					<a>Forgot Password?</a>
+				</div></div></div></div>
+				</div>
+		</div>
+</body>
+</html>

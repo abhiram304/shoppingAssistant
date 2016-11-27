@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Signup</title>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -17,47 +17,41 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>
-<body><div class="container-full">
-		<div class="jumbotron" id="jumbo2">
-		<img id="logo" src="images/twitterLogo.png" />
-		<h2 id="title">Join Twitter Today</h2>
-		<h4 id="title2"></h4>			
-		<button onclick="/signup" class="btn btn-success" id="signup">Sign up</button>
-	</div>
+<body>
+<div class="container-fluid">
+		<div class="jumbotron">
+		<h2 id="title">Shopping Assistant</h2>			
+		<button onclick="/customerLogin" class="btn btn-success">Login</button>
+	</div></div>
 	<div class="container-fluid" id="signupbox">
 		<div class="row-fluid">
+		<div class="col-md-3"></div>
+			<div class="col-md-6">
 			<div class="span8">
-					<form action="/signed" method="post">
-					<div class="form-group" style="width: 40%;">
+					<form action="/postSignUpDetails" method="post">
+					<div class="form-group" >
 						<label for="FisrtName">First Name</label> <input type="Text"
-							class="form-control" name="FirstName" placeholder="First Name">
+							class="form-control" id="firstName" name="firstName" placeholder="First Name">
 					</div>
-					<div class="form-group" style="width: 40%;">
+					<div class="form-group" >
 						<label for="LastName">Last Name</label> <input type="Text"
-							class="form-control" name="LastName" placeholder="Last Name">
+							class="form-control" id="lastName" name="lastName" placeholder="Last Name">
 					</div>
-					<div class="form-group" style="width: 40%;">
-						<label for="dob">Birth Day</label> <input type="date"
-							class="form-control" name="dob" placeholder="Date of Birth">
-					</div>
-					<div class="form-group" style="width: 40%;">
+					<div class="form-group" >
 						<label for="email">Email address</label> <input type="text"
-							class="form-control" name="email" placeholder="Email">
+							class="form-control" id="email" name="email" placeholder="Email">
 					</div>
-					<div class="form-group" style="width: 40%;">
+					<div class="form-group" >
 						<label for="password">Password</label> <input type="password"
-							class="form-control" name="password" placeholder="Password">
+							class="form-control" id="password" name="password" placeholder="Password">
 					</div>
-					<div class="form-group" style="width: 40%;">
-						<label for="Thandle">Twitter Handle(#)</label> <input type="text"
-							class="form-control" name="Thandle" placeholder="TwitterHandle">
-					</div>
-					<div class="form-group" style="width: 40%;">
+					<div class="form-group" >
 						<label for="phone">Phone Number</label> <input type="text"
-							class="form-control" name="phone" placeholder="Phone">
+							class="form-control" id="phone" name="phone" placeholder="Phone">
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
+			</div>
 			</div>
 		</div>
 	</div>
