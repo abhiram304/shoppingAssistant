@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', cusPointer1.returnCustomerHomepage);
+app.get('/', cusPointer4.getCustSignUpPage);
 app.get('/users', user.list);
 //Customer Homepage
 app.post('/search',cusPointer2.searchRestaurents);
