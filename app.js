@@ -47,13 +47,15 @@ app.get('/users', user.list);
 app.post('/search',cusPointer2.searchRestaurents);
 app.get('/redirectToHomePage', cusPointer1.redirectToHomePage);
 //Customer Login
+app.get('/logout', cusPointer3.logout);
 app.get('/customerLogin',cusPointer3.getCustLoginPage);
 app.post('/checkCustLoginDetails',cusPointer3.checkCustLoginDetails);
 //Customer Signup
 app.get('/customerSignup',cusPointer4.getCustSignUpPage);
 app.post('/postSignUpDetails',cusPointer4.postSignUpDetails);
 
-
+//Search Results and add bill
+app.get('/addBill', cusPointer4.getCustSignUpPage);
 
 
 http.createServer(app).listen(app.get('port'), function(){

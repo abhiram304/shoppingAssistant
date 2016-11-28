@@ -53,3 +53,12 @@ exports.checkCustLoginDetails = function(req, res){
 				
 			}, selectPassQuery);
 };
+
+
+
+/*LOGOUT*/
+exports.logout = function(req,res)
+{
+	req.session.destroy();
+	res.redirect('/');
+};
