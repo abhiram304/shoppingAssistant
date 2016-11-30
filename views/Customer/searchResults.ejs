@@ -42,7 +42,10 @@
 			<% for(var i in obj.businesses) 
 	            {                     
             %>
-			<div class="well"><%= obj.businesses[i].name %> : <%= obj.businesses[i].rating %> <button type="submit" name="restaurentChoice" value='<%= obj.businesses[i].name %>'>I am here</button></div>
+			<div class="well">
+			<img src='<%= obj.businesses[i].image_url %>' class="img-rounded" alt="Restaurant" width="100" height="100">
+			<%= obj.businesses[i].name %> : <%= obj.businesses[i].rating %> <button type="submit" name="restaurentChoice" value='<%= obj.businesses[i].name %>'>I am here</button></div>
+			<br>
 			
 			<%
             	}

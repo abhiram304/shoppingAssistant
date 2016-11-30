@@ -14,7 +14,7 @@ exports.checkCustLoginDetails = function(req, res){
 	var username, password;
 	username = req.body.userid;
 	password = req.body.password;
-	var selectPassQuery = "select cust_pass from customer where cust_email='"+ username +"'";
+	var selectPassQuery = "select cust_pass, cust_id from customer where cust_email= '"+ username +"'";
 	var json_responses;
 	
 	mysql.fetchData(
@@ -27,10 +27,11 @@ exports.checkCustLoginDetails = function(req, res){
 						var jsonString1= JSON.stringify(results);
 						var passParsed= JSON.parse(jsonString1);
 						console.log("This is the found password: "+passParsed[0].cust_pass);
-						
+						console.log("This is the customer id: "+passParsed[0].cust_id);
 						if(passwordHash.verify(password, passParsed[0].cust_pass))
 						{
 							req.session.username = username;
+							req.session.customerId=passParsed[0].cust_id;
 						    console.log("Session initialized");
 						    json_responses = {"statusCode" : 200};
 						    res.redirect('/redirectToHomePage');

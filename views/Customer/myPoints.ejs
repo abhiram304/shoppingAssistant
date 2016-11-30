@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Add Bill</title>
+<style>
+meter { -webkit-appearance: none; } //Crucial, this will disable the default styling in Webkit browsers
+
+meter::-webkit-meter-bar {
+    background: #FFF;
+    border: 1px solid #CCC;
+}
+
+meter::-webkit-meter-optimum-value {
+    background: #87C7DE;
+    background: -moz-linear-gradient(top, #a1d4e6 0%, #6bb4d1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a1d4e6), color-stop(100%, #6bb4d1));
+    background: -webkit-linear-gradient(top, #a1d4e6 0%, #6bb4d1 100%);
+    background: -o-linear-gradient(top, #a1d4e6 0%, #6bb4d1 100%);
+    background: -ms-linear-gradient(top, #a1d4e6 0%, #6bb4d1 100%);
+    background: linear-gradient(to bottom, #a1d4e6 0%, #6bb4d1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1d4e6', endColorstr='#6bb4d1',GradientType=0);
+}
+</style>
+</head>
+<body>
+
+	<!-- Navigator -->
+<div id="top-navbar" class="navbar navbar-default navbar-top">
+			<div class="container">
+				<ul class="nav navbar-nav">
+				
+					<li class="active"><a href="#">Home</a></li>
+					<li><a  href="/">Account</a></li>
+					<li><a  href="/">Abc</a></li>
+					<li><a  href="/">Def</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-search"
+							aria-hidden="true"></span></a></li>
+				</ul>
+							<ul class="nav navbar-nav navbar-right">
+      				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    						</ul>
+				
+				
+			</div>
+		</div>
+	<!-- Container -->
+	<div class="container">
+		
+			
+			<div align="center">
+				<h1>My Points</h1>
+					<div class="container-fluid" id="signupbox">
+		<div class="row-fluid">
+		<div class="col-md-3"></div>
+			<div class="col-md-6">
+			<div class="span8">
+			<h1>Meter</h1>
+					
+					<form action="/redeemPoints" method="get">
+					
+						<div class="meter">
+    <span style="width: 25%"></span>
+</div>
+						 
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+			</div>
+			
+		
+	</div>
+
+</body>
+</html>
+
+

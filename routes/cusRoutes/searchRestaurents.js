@@ -1,6 +1,14 @@
 
 exports.searchRestaurents = function(req, res){
   
+	if (req.session.username) {
+		res.header(
+						'Cache-Control',
+						'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+		var json_responses = {
+			"user" : req.session.username,
+		};
+	
 	var Yelp = require('yelp');
 	 
 	var yelp = new Yelp({
@@ -10,6 +18,8 @@ exports.searchRestaurents = function(req, res){
 	  token_secret: 'tArD_HGYsluoOVQuJaWK131GjFs',
 	});
 	resData={};
+	console.log("Session in customer username: ......."+req.session.username);
+	console.log("Session in customer id: ......."+req.session.customerId);
 	var distance=req.body.distance;
 	var cuisine=req.body.cuisine;
 	var location=req.body.location;
@@ -24,7 +34,11 @@ exports.searchRestaurents = function(req, res){
 	  console.log(JSON.stringify(data));
 	  var jsonParse1=JSON.parse(JSON.stringify(data));
 	  console.log("-------------------");
-	  console.log(jsonParse1.businesses[0].name+"  "+jsonParse1.businesses[0].rating);
+	  console.log(jsonParse1.businesses[0].name+"  "+jsonParse1.businesses[0].rating+" "+jsonParse1.businesses[0].image_url+" "+jsonParse1.businesses[0].rating_img_url_small);
 	  res.render('Customer/searchResults',{obj: jsonParse1});
 	});
+	}
+	else{
+		res.render('Customer/customerLogin',{"status":1});
+	}
 };

@@ -14,6 +14,10 @@ function getConnection(){
 	return pool;
 }
 
+function escape(token){
+	return  mysql.escape(token);
+}
+exports.escape=escape;
 
 function fetchData(callback,sqlQuery){
 	

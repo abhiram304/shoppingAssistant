@@ -9,12 +9,14 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , session = require('client-sessions');
+var fileUpload = require('express-fileupload');
 
 //Custom paths
 var cusPointer1=require('./routes/cusRoutes/customerHomeRouter');
 var cusPointer2=require('./routes/cusRoutes/searchRestaurents');
 var cusPointer3=require('./routes/cusRoutes/customerLogin');
 var cusPointer4=require('./routes/cusRoutes/customerSignup');
+var cusPointer5=require('./routes/cusRoutes/addBill');
 var app = express();
 
 
@@ -32,16 +34,22 @@ app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(fileUpload());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', cusPointer4.getCustSignUpPage);
+
+//Starting page
+app.get('/',routes.index);
+
+app.get('/customerSignup', cusPointer4.getCustSignUpPage);
 app.get('/users', user.list);
 //Customer Homepage
 app.post('/search',cusPointer2.searchRestaurents);
@@ -55,7 +63,8 @@ app.get('/customerSignup',cusPointer4.getCustSignUpPage);
 app.post('/postSignUpDetails',cusPointer4.postSignUpDetails);
 
 //Search Results and add bill
-app.get('/addBill', cusPointer4.getCustSignUpPage);
+app.get('/addBill', cusPointer5.addBill);
+app.get('/postBillDetails',cusPointer5.postBillDetails);
 
 
 http.createServer(app).listen(app.get('port'), function(){
