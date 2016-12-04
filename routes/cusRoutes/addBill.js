@@ -3,21 +3,21 @@ var authToken = '8446627e5a4b458facedb6d8b38620a1';
 var mysql = require('../mysql');
 //require the Twilio module and create a REST client 
 var client = require('twilio')(accountSid, authToken); 
-var imageToTextDecoder = require('image-to-text');
-var fileUpload = require('express-fileupload');
-var fs = require('fs');
+//var imageToTextDecoder = require('image-to-text');
+//var fileUpload = require('express-fileupload');
+//var fs = require('fs');
 
 
-var express = require('express'); 
-var app = express();
+//var express = require('express'); 
+//var app = express();
 
 //default options 
-app.use(fileUpload());
+//app.use(fileUpload());
 
 
-var busboy = require('connect-busboy');
+//var busboy = require('connect-busboy');
 var request = require('request');
-var cheerio = require('cheerio');
+//var cheerio = require('cheerio');
 var http = require('http');
 
 
@@ -35,7 +35,7 @@ exports.addBill = function(req, res){
 		 var restaurentChoice=req.param("restaurentChoice");
 		  var url = 'http://www.imdb.com/title/tt1229340/';
 
-		    request(url, function(error, response, html){
+		    /*request(url, function(error, response, html){
 		       console.log("Inside, response: "+html);
 		    	if(!error){
 		    		console.log("Very inside");
@@ -65,7 +65,7 @@ exports.addBill = function(req, res){
 		        	console.log("Error while extracting");
 		        }
 		    })
-		
+*/		
 	
 	}
 	else{
@@ -76,12 +76,6 @@ exports.addBill = function(req, res){
 
 
 exports.postBillDetails = function(req,res){
-	 
-	
-	
-	
-	
-	
 	/*var sampleFile;
 	 
     if (!req.files) {
@@ -109,7 +103,7 @@ exports.postBillDetails = function(req,res){
 	
 	
 	//form files
-	var fstream;
+	//var fstream;
     //req.pipe(req.busboy);
     
     /*req.busboy.on('file', function (fieldname, file, filename) {
@@ -137,7 +131,7 @@ exports.postBillDetails = function(req,res){
 	keywords="";
 	var billURL=req.body.billURL;
 	
-	var file = {
+	/*var file = {
 			   name: 'bill.jpg',
 			   path: billURL
 			 };
@@ -149,7 +143,7 @@ exports.postBillDetails = function(req,res){
 				 console.log("kkkkkkkkkkkkkk"+keywords);
 			 },function(error){
 			    console.log(error);
-			 });
+			 });*/
 	var points=0;
 	var billNum=req.body.billNum;
 	var totalCost=req.body.totalCost;
