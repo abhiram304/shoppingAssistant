@@ -26,7 +26,82 @@ var http = require('http');
  */
 
 exports.thanks = function(req, res){
-  res.render('Customer/thanks', { title: 'Express' });
+	if (req.session.username) {
+		res.header(
+						'Cache-Control',
+						'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+		var json_responses = {
+			"user" : req.session.username,
+		};
+	
+	var points=0;
+	var billNum=req.body.billNum;
+	var totalCost=req.body.totalCost;
+	var restaurentChoice=req.body.restaurentChoice;
+	restaurentChoice = restaurentChoice.replace('\'','');
+	console.log("Taken from sessioncustomerID: "+req.session.customerId);
+	var insertIntoQuery = "insert into billing  (bill_no, cust_id, vendor_name, cost) values ('"+billNum+"', '"+req.session.customerId+"', '"+restaurentChoice+"', '"+totalCost+"')";
+	if(totalCost<=5){
+		points=100;
+	}
+	if(totalCost>5&& totalCost<=15){
+		points=200;
+	}
+	if(totalCost>15 && totalCost<=30){
+		points=300;
+	}
+	if(totalCost>30&& totalCost<=60){
+		points=400;
+	}
+	if(totalCost>60 && totalCost<=100){
+		points=500;
+	}
+	if(totalCost>100){
+		points=1000;
+	}
+	console.log("The current users userid: "+req.session.customerId);
+	var getPointsQuery="SELECT points from points where id='"+req.session.customerId+"'";
+	
+	mysql.fetchData(function(err, results) {
+		if (err) {
+			throw err;
+		} else {
+			mysql.fetchData(function(err, results) {
+				if (err) {
+					throw err;
+				} else {
+					
+					
+					var jsonString1= JSON.stringify(results);
+					var passParsed= JSON.parse(jsonString1);
+					console.log("Get points query.."+passParsed[0].points);
+					points=points+passParsed[0].points;
+					var updatePointsQuery="UPDATE points SET points='"+points+"' WHERE id='"+req.session.customerId+"'";
+					console.log("Getting the users existing points...: "+jsonString1);
+					mysql.fetchData(function(err, results) {
+						if (err) {
+							throw err;
+						} else {
+							console.log("Updating the existing points with new points...:"+points);
+							/*client.messages.create({
+							to: "+15102039956", 
+							from: "+16692316114",
+							body: "From RestoAssist: Hello,"+points+" points are added to your account",  
+						}, function(err, message) { 
+							console.log(message); 
+						}); */
+							res.render('Customer/thanks', { title: 'Express' });
+						}
+					}, updatePointsQuery);
+				}
+			}, getPointsQuery);
+		}
+	}, insertIntoQuery);
+
+	}else{
+		res.render('Customer/customerLogin',{"status":1});
+	}
+	
 };
 
 
