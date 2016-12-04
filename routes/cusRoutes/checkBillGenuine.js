@@ -1,4 +1,4 @@
-var imageToTextDecoder = require('image-to-text');
+/*var imageToTextDecoder = require('image-to-text');
 
 exports.checkBillGenuine = function(req, res){
 	if (req.session.username) {
@@ -11,7 +11,7 @@ exports.checkBillGenuine = function(req, res){
 		 var restaurentUrl=req.param("restaurentURL");
 		 var restaurentChoice=req.param("restaurentChoice");
 		  var url = 'http://www.imdb.com/title/tt1229340/';
-
+		  var url = 'http://www.imdb.com/title/tt1229340/';
 		    request(url, function(error, response, html){
 		       console.log("Inside, response: "+html);
 		    	if(!error){
@@ -50,4 +50,4 @@ exports.checkBillGenuine = function(req, res){
 	else{
 		res.render('Customer/customerLogin',{"status":1});
 	}
-};
+};*/
