@@ -10,15 +10,20 @@ var express = require('express')
   , path = require('path')
   , session = require('client-sessions');
 var fileUpload = require('express-fileupload');
-
+var multer=require('multer');
+//var bodyParser = require('body-parser');
 //Custom paths
 var cusPointer1=require('./routes/cusRoutes/customerHomeRouter');
 var cusPointer2=require('./routes/cusRoutes/searchRestaurents');
 var cusPointer3=require('./routes/cusRoutes/customerLogin');
 var cusPointer4=require('./routes/cusRoutes/customerSignup');
 var cusPointer5=require('./routes/cusRoutes/addBill');
+var cusPointer6=require('./routes/cusRoutes/redeemPoints');
+var cusPointer7=require('./routes/cusRoutes/about');
+var cusPointer8=require('./routes/cusRoutes/contact');
+var cusPointer9=require('./routes/cusRoutes/checkBillGenuine');
 var app = express();
-
+var busboy = require('connect-busboy');
 
 //Session
 app.use(session({   
@@ -38,8 +43,9 @@ app.use(fileUpload());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-
+app.use(busboy()); 
+//app.use(bodyParser.json());
+var upload = multer({ dest: './uploads/' });
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -64,7 +70,21 @@ app.post('/postSignUpDetails',cusPointer4.postSignUpDetails);
 
 //Search Results and add bill
 app.get('/addBill', cusPointer5.addBill);
-app.get('/postBillDetails',cusPointer5.postBillDetails);
+app.post('/postBillDetails', cusPointer5.postBillDetails); 
+		/*cusPointer5.postBillDetails);*/
+
+
+//redeem points
+app.get('/myPoints',cusPointer6.getMyPoints);
+app.get('/redeemPoints',cusPointer6.redeemMyPoints);
+
+//about and contact
+app.get('/about', cusPointer7.about);
+app.get('/contact',cusPointer8.contact);
+
+
+//checkBillGenuine
+app.get('/checkBillGenuine',cusPointer9.checkBillGenuine)
 
 
 http.createServer(app).listen(app.get('port'), function(){

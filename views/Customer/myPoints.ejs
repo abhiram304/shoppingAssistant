@@ -1,14 +1,37 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Add Bill</title>
+<meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart']});     
+   </script>
+<title>My Points</title>
+<!-- <link rel='stylesheet' href='/stylesheets/bill.css' /> -->
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' href='/stylesheets/font-awesome.min.css' />
+<link rel='stylesheet' href='/stylesheets/owl.carousel.css' />
+<link rel='stylesheet' href='/stylesheets/owl.theme.css' />
+<link rel='stylesheet' href='/stylesheets/animate.css' />
+<link rel='stylesheet' href='/stylesheets/flexslider.css' />
+<link rel='stylesheet' href='/stylesheets/pricing.css' />
+<link rel='stylesheet' href='/stylesheets/main.css' />
 <style>
 meter { -webkit-appearance: none; } //Crucial, this will disable the default styling in Webkit browsers
 
@@ -28,28 +51,81 @@ meter::-webkit-meter-optimum-value {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a1d4e6', endColorstr='#6bb4d1',GradientType=0);
 }
 </style>
+<script>
+function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
+function drawChart() {
+   // Define the chart to be drawn.
+   var data = new google.visualization.DataTable();
+   data.addColumn('string', 'Points');
+   data.addColumn('number', 'Percentage');
+   /* (10000-<%=myPoints%>) */
+   var remainingPoints=(15000-<%=myPoints%>);
+   if((<%=myPoints%>)>=15000){
+   	remainingPoints=remainingPoints+1000;
+   }
+  	console.log("points remaining"+remainingPoints);
+   data.addRows([
+      ['My Points', <%=myPoints%>],
+      ['Required More', remainingPoints],
+   ]);
+   
+   // Set chart options
+   var options = {'title':'Your points',
+      'width':550,
+      'height':400,
+       pieHole: 0.4
+   };
+
+   // Instantiate and draw the chart.
+   var chart = new google.visualization.PieChart(document.getElementById('container'));
+   chart.draw(data, options);
+}
+google.charts.setOnLoadCallback(drawChart);
+</script>
 </head>
 <body>
 
-	<!-- Navigator -->
-<div id="top-navbar" class="navbar navbar-default navbar-top">
-			<div class="container">
-				<ul class="nav navbar-nav">
-				
-					<li class="active"><a href="#">Home</a></li>
-					<li><a  href="/">Account</a></li>
-					<li><a  href="/">Abc</a></li>
-					<li><a  href="/">Def</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-search"
-							aria-hidden="true"></span></a></li>
-				</ul>
-							<ul class="nav navbar-nav navbar-right">
-      				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    						</ul>
-				
-				
-			</div>
-		</div>
+
+<!--== Navigation ==-->
+        <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="panel panel-default">
+				              <h3 id="title">RestoAssistant</h3>
+			             </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="Food-fair-toggle">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about">about us</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/redirectToHomePage">Cuisines</a></li>
+                        <li><a href="/addBill">Billing</a></li>
+                        <li><a href="/contact">contact</a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>SignOut</a></li>
+                        <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.row -->
+        </nav>
+<br>
+<br>
+<br>
+<br>
 	<!-- Container -->
 	<div class="container">
 		
@@ -61,7 +137,7 @@ meter::-webkit-meter-optimum-value {
 		<div class="col-md-3"></div>
 			<div class="col-md-6">
 			<div class="span8">
-			<h1>Meter</h1>
+			<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
 					
 					<form action="/redeemPoints" method="get">
 					
@@ -69,7 +145,7 @@ meter::-webkit-meter-optimum-value {
     <span style="width: 25%"></span>
 </div>
 						 
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default">Redeem Points</button>
 				</form>
 			</div>
 			</div>
@@ -79,6 +155,34 @@ meter::-webkit-meter-optimum-value {
 			
 		
 	</div>
+	
+	
+	<br><br><br><br>
+		<br><br><br><br>
+		<br><br><br><br><br><br>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="copyright text-center">
+                            <p>
+                                &copy; Team Ignous <a href="#">https://shopassis.herokuapp.com/</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+        <script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>
+        <script src="js/script.js"></script>
 
 </body>
 </html>

@@ -1,40 +1,226 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <title>Add Bill</title>
+
+<link rel='stylesheet' href='/stylesheets/bill.css' />
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' href='/stylesheets/font-awesome.min.css' />
+<link rel='stylesheet' href='/stylesheets/owl.carousel.css' />
+<link rel='stylesheet' href='/stylesheets/owl.theme.css' />
+<link rel='stylesheet' href='/stylesheets/animate.css' />
+<link rel='stylesheet' href='/stylesheets/flexslider.css' />
+<link rel='stylesheet' href='/stylesheets/pricing.css' />
+<link rel='stylesheet' href='/stylesheets/main.css' />
+
+
+<script>
+function canc()
+{
+document.getElementById("tr").innerHTML="";
+}
+function generateCloud(){
+document.getElementById("cloud").innerHTML="";
+var vr = document.getElementById("tr").value;
+var wds = [ vr ]
+var cloudc = wC('#cloud');
+wordsn(cloudc);
+function wC(to) {
+var fill = d3.scale.category20();
+var svg = d3.select(to).append("svg")
+.attr("height",510)
+.attr("width",510)
+.append("g")
+.attr("transform", "translate(252,252)");
+function prt(wds) 
+{
+var cloud = svg.selectAll("g text")
+.data(wds, function(l) { return l.text; })
+
+ cloud.enter()
+.append("text")
+.style("font-family", "Impact")
+.style("fill", function(l, m) 
+{ 
+return fill(m); 
+})
+.attr('font-size', 1.5)
+.attr("text-anchor", "middle")
+.text(function(l) { return l.text; });
+
+                    
+cloud
+.transition()
+.duration(590)
+.style("font-size", function(l) 
+{ 
+return l.sz + "px"; 
+})
+.attr("transform", function(l) 
+{
+return "translate(" + [l.x, l.y] + ")rotate(" + l.rotate + ")";
+})
+.style("fill-opacity", 3);
+
+cloud.exit()
+.style('fill-opacity', 1.5)
+.transition()
+.duration(210)
+.attr('font-size', 1.5)
+.remove();
+                }
+
+return {                      
+update: function(wds) 
+{
+d3.layout.cloud().size([490, 490])
+ .words(wds)
+ .padding(6)
+ .rotate(function() 
+    { return ~~(Math.random() * 3) * 85; 
+    })
+ .font("Impact")
+ .fontSize(function(l) 
+    { return l.sz; 
+    })
+ .on("end", prt)
+ .start();
+ }
+  }
+   }
+
+function wdds(m) 
+  {
+    return wds[m]
+    .replace(/[!\.,:;\?]/g, '')
+    .split(' ')
+    .map(function(l) 
+    {
+    return {text: l, sz: 11 + Math.random() * 58};
+      })
+        }
+
+        
+function wordsn(re, m) {
+    m = m || 0;
+    re.update(wdds(m ++ % wds.length))
+            }
+                
+                
+google.charts.load('current', {packages:['wordtree']});
+google.charts.setOnLoadCallback(dC);
+
+function dC() {
+ var dt = google.visualization.arrayToDataTable(
+ [ ['P'],
+  [vr]
+    ]
+      );
+
+var ns = 
+ {
+    wordtree: 
+    {
+    format: 'implicit',
+    }
+    };
+
+var tr = new google.visualization.WordTree(document.getElementById('tree'));
+    tr.draw(dt, ns);
+      }
+        }
+</script>
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+#cloud
+{
+height: 490px; 
+position: relative; 
+width:62%;
+float: left; 
+}
+#tree
+{
+height: 490px; 
+position: relative; 
+width: 38%;
+float: left; 
+}
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+
 </head>
 <body>
 
-	<!-- Navigator -->
-<div id="top-navbar" class="navbar navbar-default navbar-top">
-			<div class="container">
-				<ul class="nav navbar-nav">
-				
-					<li class="active"><a href="#">Home</a></li>
-					<li><a  href="/">Account</a></li>
-					<li><a  href="/">Abc</a></li>
-					<li><a  href="/">Def</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-search"
-							aria-hidden="true"></span></a></li>
-				</ul>
-							<ul class="nav navbar-nav navbar-right">
-      				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    						</ul>
-				
-				
-			</div>
-		</div>
+<!--== Navigation ==-->
+        <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="panel panel-default">
+				              <h3 id="title">RestoAssistant</h3>
+			             </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="Food-fair-toggle">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/about">about us</a></li>
+                        <li><a href="/">home</a></li>
+                        <li><a href="/redirectToHomePage">cuisines</a></li>
+                        <li><a href="/addBill">Billing</a></li>
+                        <li><a href="/contact">contact</a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>SignOut</a></li>
+                        <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.row -->
+        </nav>
+<br>
+<br>
+<br>
+<br>
+
 	<!-- Container -->
 	<div class="container">
-		
-			
+		<div class="row">
+		<input type="hidden" name="comment" id="tr" value='<%=text%>'>
+<!-- <textarea style= "background-color:lightblue; float:right;" border ="3px solid blue" rows="10"  name="comment" cols="120"  id="tr">
+<%=text%>
+</textarea><br>  --> </div>  
+<div class="col-sm-6"><div id="cloud"></div></div>	
+<button onclick="generateCloud()" style="color: white; padding: 16px 33px; text-align: center;  margin: 5px; margin-left: 66px; background-color: green; display: inline-block;font-size: 15px;" >Generate Word Cloud And Word Tree</button>		
 			<div align="center">
 				<h1>Add Bill</h1>
 					<div class="container-fluid" id="signupbox">
@@ -42,14 +228,17 @@
 		<div class="col-md-3"></div>
 			<div class="col-md-6">
 			<div class="span8">
-					<form action="/postBillDetails" method="get" enctype="multipart/form-data">
 					
-						
-						 <input 
-							class="form-control" id="restaurentChoice" value='<%= abc %>' name="restaurentChoice" type="hidden">
+					<form action="/postBillDetails" method="post" encType="multipart/form-data" >
+						<input class="form-control" id="restaurentChoice" value='<%= abc %>' name="restaurentChoice" type="hidden">
 					<div class="form-group" >
-					<input type="file" name="sampleFile" accept="image/*">
+					<input type="file" name="sampleFile" id="sampleFile">
 					</div>
+					<div class="form-group" >
+					<input type="text" name="billURL" placeholder="Bill URL">
+					</div>
+					
+					
 					<div class="form-group" >
 						<label for="Bill Number">Bill Number</label> <input type="Text"
 							class="form-control" id="billNum" name="billNum" placeholder="Bill Number">
@@ -68,6 +257,33 @@
 			
 		
 	</div>
+
+<br><br><br><br>
+		<br><br><br><br>
+		<br><br><br><br><br><br>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="copyright text-center">
+                            <p>
+                                &copy; Team Ignous <a href="#">https://shopassis.herokuapp.com/</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+        <script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>
+        <script src="js/script.js"></script>
 
 </body>
 </html>

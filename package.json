@@ -6,11 +6,21 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "busboy": "^0.2.13",
+    "cheerio": "^0.22.0",
+    "connect-busboy": "0.0.2",
     "ejs": "*",
     "express": "3.2.6",
     "express-fileupload": "0.0.5",
     "image-to-text": "^1.0.8",
-    "twilio": "^2.11.1"
+    "multer": "^1.2.0",
+    "request": "^2.79.0",
+    "shortid": "^2.2.6",
+    "twilio": "^2.11.1",
+    "unique-id-generator": "^1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
   }
 }

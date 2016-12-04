@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
@@ -16,110 +18,442 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 
-<title>Homepage</title>
+<title>Cuisines</title>
 
-<script>
-//var mainApp= angular.module("mainApp", []);
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' href='/stylesheets/font-awesome.min.css' />
+<link rel='stylesheet' href='/stylesheets/owl.carousel.css' />
+<link rel='stylesheet' href='/stylesheets/owl.theme.css' />
+<link rel='stylesheet' href='/stylesheets/animate.css' />
+<link rel='stylesheet' href='/stylesheets/flexslider.css' />
+<link rel='stylesheet' href='/stylesheets/pricing.css' />
+<link rel='stylesheet' href='/stylesheets/main.css' />
 
-/* mainApp.controller('Ctrl1', function($scope){
-	a=0;b=0;
-	$scope.lattitude="abhi";
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			console.log("going in here");
-			a=position.coords.longitude;
-			console.log(a);
-			//$scope.lattitude="abhi";
-			//$scope.longitude=position.coords.longitude;
-		});
-	} else {
-		alert("Geolocation is not supported by this browser.");
+<style>
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:5px solid #f00;
+}
+</style>
+<script type="text/javascript">
+	tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+	tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+	function GetClock(){
+	var d=new Date();
+	var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getYear();
+	if(nyear<1000) nyear+=1900;
+	var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds();
+	if(nmin<=9) nmin="0"+nmin
+	if(nsec<=9) nsec="0"+nsec;
+
+	document.getElementById('greet').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+"";
+	if(nhour>=0 && nhour<6)
+	document.getElementById('greet').innerHTML="Hey There! Looking for Late Night Bite?";
+	if(nhour>=6 && nhour<11)
+	document.getElementById('greet').innerHTML="Hey There! Looking for Breakfast?";
+	if(nhour>=11 && nhour<16)
+	document.getElementById('greet').innerHTML="Hey There! Looking for Lunch?";
+	if(nhour>=16 && nhour<18)
+	document.getElementById('greet').innerHTML="Hey There! Looking for an Evening Snack?";
+	if(nhour>=18 && nhour<23)
+	document.getElementById('greet').innerHTML="Hey There! Looking for Dinner?";
+	if(nhour>=23)
+	document.getElementById('greet').innerHTML="Hey There! Looking for Late Night Bite?";
+	
 	}
-	$scope.longitude;
-})
- */</script>
 
+	window.onload=function(){
+	GetClock();
+	setInterval(GetClock,1000);
+	}
+</script>
 </head>
 <body>
-<div>
-	<!-- Navigator -->
 
-	<!-- Container -->
-	<div class="container-full">
-		<div id="top-navbar" class="navbar navbar-default navbar-top">
-			<div class="container">
-				<ul class="nav navbar-nav">
+ <!--== Navigation ==-->
+        <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="panel panel-default">
+				              <h3 id="title">RestoAssistant</h3>
+			             </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="Food-fair-toggle">
+                    <ul class="nav navbar-nav navbar-right">
+                    	<li><a href="/about">about us</a></li>
+                    	<li><a href="/">Home</a></li>
+						<li><a href="#pricing">cuisines</a></li>
+                        <li><a href="/addBill">Billing</a></li>
+                        <li><a href="/contact">contact</a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>SignOut</a></li>
+                        <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.row -->
+        </nav>
+<br>
+<br>
+         
+        
+         <!--==  Available cuisines  ==-->
+         
+            
+         <form action="/search" method="POST">
+           <section id="pricing2" class="pricing2">
+            <div id="w">
+                <div class="pricing-filter">
+                    <div class="pricing-filter-wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="section-header">
+                                        <h2 class="pricing-title">Choose a Location</h2>
+	                                                     <!-- Time-based Welcome Message -->
+			                                                     <div align="center">
+			                                                     <div id="clockbox"></div>
+				                                                      <h1 id="greet"></h1>
+				                                                       <h1>Welcome</h1>
+			                                                      </div>
+															<!-- Position -->
+			                                                    <div align="center">
+			                                                       <label for="location"><h3>Enter your location</h3></label>
+			                                                          <input type="text" name="location" id="location">
+                                                          </div>
+			                                                <br>
+                                                           <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+				</section>
 				
-					<li class="active"><a href="#">Home</a></li>
-					<li><a  href="/">Account</a></li>
-					<li><a  href="/">Abc</a></li>
-					<li><a  href="/">Def</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-search"
-							aria-hidden="true"></span></a></li>
-				</ul>
-							<ul class="nav navbar-nav navbar-right">
-      				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    						</ul>
-				
-				
+				<br> <br>
+        
+        <section id="pricing" class="pricing">
+            <div id="w">
+                <div class="pricing-filter">
+                    <div class="pricing-filter-wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="section-header">
+                                        <h2 class="pricing-title">Available Cuisines</h2>
+                                        <ul id="filter-list" class="clearfix">
+                                            <li class="filter" data-filter="all">All</li>
+                                            <li class="filter" data-filter=".american">American</li>
+                                            <li class="filter" data-filter=".europian">Europian</li>
+                                            <li class="filter" data-filter=".meastern">Middle Eastern</li>
+                                            <li class="filter" data-filter=".asian">Asian</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">  
+                        <div class="col-md-10 col-md-offset-1">
+                            <ul id="menu-pricing" class="menu-price">
+                                <li class="item american">
+								                  <a>
+                                  <label class="img1">
+  									        <input type="radio" id="cuisine" name="cuisine" value="American" />
+  									                <img src="images/food1.png" class="img-responsive" alt="Food">
+									                           <div class="menu-desc text-center">
+                                             </label>
+                                            <span>
+                                                <h3>American Cuisine</h3>
+                                                Burgers, Pan Cakes & many more
+                                            </span>
+                                           </div>
+                                 </a>   
+                                    <h2 class="white">American</h2>
+                                </li>
+                                
+
+                                <li class="item europian">
+								                <a>
+                                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="British" />
+                                    <img src="images/food2.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>British Cuisine</h3>
+                                                Fish&Chips, Sunday roast & many more
+                                            </span>
+                                        </div>
+                                    </a>
+									                    <h2 class="white">British</h2>
+                                </li>
+                                
+                                <li class="item american">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Caribbean" />
+                                        <img src="images/food3.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                         </label>
+                                            <span>
+                                                <h3>Caribbean Cuisine</h3>
+                                                Seafood, Jerk, Roast Pork & many more
+                                            </span>
+                                        </div>
+                                    </a>   
+                                    <h2 class="white">Caribbean</h2>
+                                </li>
+                                
+                                <li class="item asian">
+                                <a>
+                                <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Chinese" />
+                                        <img src="images/food4.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Chinese Cuisine</h3>
+                                                Chow mein, Orange Chicken, Wontons & many more
+                                            </span>
+                                        </div>
+                                    </a>
+									                  <h2 class="white">Chinese</h2>
+                                </li>
+                                
+                                <li class="item europian">
+									              <a>
+									                <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="French" />
+                                        <img src="images/food5.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>French Cuisine</h3>
+                                                Breads, Desserts, Pastries & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">French</h2>
+                                </li>
+                                
+                                <li class="item meastern">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Greek" />
+                                        <img src="images/food6.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Greek Cuisine</h3>
+                                                Gyros, Souvlakis & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Greek</h2>
+                                </li>
+                                
+                                <li class="item asian">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Indian" />
+                                        <img src="images/food7.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Indian Cuisine</h3>
+                                                Biryani, Curry, Naan & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Indian</h2>
+                                </li>
+                                
+                                <li class="item europian">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Italian" />
+                                        <img src="images/food8.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Italian Cuisine</h3>
+                                                Pizzas, lasagnas & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Italian</h2>
+                                </li>
+                                
+                                <li class="item asian">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Japanese" />
+                                        <img src="images/food9.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Japanese Cuisine</h3>
+                                                Sushi, Tempura, Tofu & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Japanese</h2>
+                                </li> 
+                                 
+                                <li class="item meastern">
+									                <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Mediterranean" />
+                                        <img src="images/food10.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Mediterranean Cuisine</h3>
+                                                Shawarmas, Pita Bread & many more
+                                            </span>
+                                        </div>
+                                    </a>
+									                  <h2 class="white">Mediterranean</h2>
+                                </li>
+                                
+                                <li class="item american">
+									                  <a>
+									                  <label class="img1">
+                                    <input type="radio" id="cuisine" name="cuisine" value="Mexican" />
+                                        <img src="images/food11.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Mexican Cuisine</h3>
+                                                Burritos, Tacos, Nachos & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Mexican</h2>
+                                </li>
+                                
+                                <li class="item meastern">
+                                     <a>
+                                     <label class="img1">
+                                     <input type="radio" id="cuisine" name="cuisine" value="Moroccan" />
+                                        <img src="images/food12.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Moroccan Cuisine</h3>
+                                                Moroccan spreads, Seafood, Pickled lemons & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Moroccan</h2>
+                                </li>  
+                                
+                                <li class="item europian">
+                                	<a>
+                                	<label class="img1">
+                                     <input type="radio" id="cuisine" name="cuisine" value="Spanish" />
+                                        <img src="images/food13.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Spanish Cuisine</h3>
+                                                Paella, Merienda & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Spanish</h2>
+                                </li>
+                                
+                                <li class="item asian">
+                                	<a>
+                                	<label class="img1">
+                                     <input type="radio" id="cuisine" name="cuisine" value="Thai" />
+                                        <img src="images/food14.jpg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                        </label>
+                                            <span>
+                                                <h3>Thai Cuisine</h3>
+                                                Spicy Currys, Soups, Fried Rice & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Thai</h2>
+                                </li>
+                                
+                                <li class="item meastern">
+                               		 <a>
+                               		 <label class="img1">
+                                     <input type="radio" id="cuisine" name="cuisine" value="Turkish" />
+                                        <img src="images/food15.jpeg" class="img-responsive" alt="Food" >
+                                        <div class="menu-desc">
+                                            <span>
+                                                <h3>Turkish Cuisine</h3>
+                                                Lahmacun, Kurufasulye & many more
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <h2 class="white">Turkish</h2>
+                                </li>  
+                              </ul>
+                        </div>   
+                    </div>
+                </div>
 			</div>
-		</div>
-		<form action="/search" method="POST">
-			<!-- Time-based Welcome Message -->
+            
+            <!-- Search button -->
 			<div align="center">
-				<h1>Welcome for Lunch</h1>
-			</div>
+				<button type="Submit" class="btn btn-success btn-lg">Search</button>
+				</div> 
+        </section>
+</form>
+<br><br><br><br>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="copyright text-center">
+                            <p>
+                                &copy; Team Ignous <a href="#">https://shopassis.herokuapp.com/</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+        <script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>
+        <script src="js/script.js"></script>
 
-			<!-- Select the distance/range -->
-			<div align="center">
-				<label for="distance">Distance</label> <input type="range"
-					name="distance" id="distance" min="500"  max="5000"
-					step="100">
-			</div>
-
-			<br>
-
-			<!-- Select Type of Cuisine -->
-			<div align="center">
-				<input list="cuisine" name="cuisine" style="width: 300px;">
-				<datalist id="cuisine">
-					<option value="American">
-					<option value="British">
-					<option value="Caribbean">
-					<option value="Chinese">
-					<option value="French">
-					<option value="Greek">
-					<option value="Indian">
-					<option value="Italian">
-					<option value="Japanese">
-					<option value="Mediterranean">
-					<option value="Mexican">
-					<option value="Moroccan">
-					<option value="Spanish">
-					<option value="Thai">
-					<option value="Turkish">
-					<option value="Vietnamese">
-				</datalist>
-			</div>
-
-			<br>
-
-			<!-- Position -->
-			<div align="center">
-			<label for="location">Enter your location</label>
-			<input type="text" name="location" id="location"></div>
-			
-			<br>
-
-			<!-- Search button -->
-			<div align="center">
-				<button type="Submit" class="btn btn-success">Search</button>
-			</div>
-		</form>
-	</div>
-</div>
 </body>
 </html>
-
-
