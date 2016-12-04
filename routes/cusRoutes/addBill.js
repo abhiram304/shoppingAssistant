@@ -21,6 +21,16 @@ var cheerio = require('cheerio');
 var http = require('http');
 
 
+/*
+ * GET home page.
+ */
+
+exports.thanks = function(req, res){
+  res.render('Customer/thanks', { title: 'Express' });
+};
+
+
+
 /*GET ADD BILL PAGE*/
 exports.addBill = function(req, res){
 	if (req.session.username) {

@@ -11,7 +11,7 @@ var express = require('express')
   , session = require('client-sessions');
 var fileUpload = require('express-fileupload');
 var multer=require('multer');
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 //Custom paths
 var cusPointer1=require('./routes/cusRoutes/customerHomeRouter');
 var cusPointer2=require('./routes/cusRoutes/searchRestaurents');
@@ -70,7 +70,7 @@ app.post('/postSignUpDetails',cusPointer4.postSignUpDetails);
 
 //Search Results and add bill
 app.get('/addBill', cusPointer5.addBill);
-app.post('/postBillDetails', cusPointer5.postBillDetails); 
+app.post('/postBillDetails', cusPointer5.thanks); 
 		/*cusPointer5.postBillDetails);*/
 
 
