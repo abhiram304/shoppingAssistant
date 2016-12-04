@@ -17,7 +17,7 @@ var client = require('twilio')(accountSid, authToken);
 
 //var busboy = require('connect-busboy');
 var request = require('request');
-//var cheerio = require('cheerio');
+var cheerio = require('cheerio');
 var http = require('http');
 
 
@@ -35,7 +35,7 @@ exports.addBill = function(req, res){
 		 var restaurentChoice=req.param("restaurentChoice");
 		  var url = 'http://www.imdb.com/title/tt1229340/';
 
-		    /*request(url, function(error, response, html){
+		    request(url, function(error, response, html){
 		       console.log("Inside, response: "+html);
 		    	if(!error){
 		    		console.log("Very inside");
@@ -65,7 +65,7 @@ exports.addBill = function(req, res){
 		        	console.log("Error while extracting");
 		        }
 		    })
-*/		
+		
 	
 	}
 	else{
@@ -76,6 +76,7 @@ exports.addBill = function(req, res){
 
 
 exports.postBillDetails = function(req,res){
+	console.log("Goin innnnnnnnnnnn");
 	/*var sampleFile;
 	 
     if (!req.files) {
@@ -92,16 +93,7 @@ exports.postBillDetails = function(req,res){
             console.log("File uploaded");
         }
     });
-*/	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+*/		
 	//form files
 	//var fstream;
     //req.pipe(req.busboy);
@@ -115,10 +107,6 @@ exports.postBillDetails = function(req,res){
         });
     }); 
 	*/
-	
-	
-	
-	
 	/* var key = 'anXOalkh6YW3rWy-FAoOZw'; //Your key registered from cloudsightapi @ https://cloudsightapi.com 
 	 imageToTextDecoder.setAuth(key);
 	 imageToTextDecoder.getKeywordsForImage(file).then(function(keywords){
@@ -127,10 +115,9 @@ exports.postBillDetails = function(req,res){
 	    console.log(error);
 	 });
 	*/
-	console.log("Req body...."+JSON.stringify(req.body));
-	keywords="";
+	//console.log("Req body...."+JSON.stringify(req.body));
+	//keywords="";
 	var billURL=req.body.billURL;
-	
 	/*var file = {
 			   name: 'bill.jpg',
 			   path: billURL
@@ -193,13 +180,13 @@ exports.postBillDetails = function(req,res){
 							throw err;
 						} else {
 							console.log("Updating the existing points with new points...:"+points);
-							client.messages.create({
+							/*client.messages.create({
 							to: "+15102039956", 
 							from: "+16692316114",
 							body: "From RestoAssist: Hello,"+points+" points are added to your account",  
 						}, function(err, message) { 
 							console.log(message); 
-						}); 
+						}); */
 							res.redirect('/myPoints');
 						}
 					}, updatePointsQuery);

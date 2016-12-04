@@ -20,6 +20,7 @@
     "twilio": "^2.11.1",
     "unique-id-generator": "^1.0.1"
   },
+  "engine": "node 4.4.5",
   "devDependencies": {
     "mocha": "^3.2.0"
   }
