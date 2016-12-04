@@ -90,7 +90,7 @@ exports.thanks = function(req, res){
 						}, function(err, message) { 
 							console.log(message); 
 						}); */
-							res.render('Customer/thanks', { title: 'Express' });
+							res.render('Customer/myPoints', { "myPoints": points });
 						}
 					}, updatePointsQuery);
 				}
