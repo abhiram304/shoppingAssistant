@@ -1,4 +1,4 @@
-/*var imageToTextDecoder = require('image-to-text');
+var imageToTextDecoder = require('image-to-text');
 
 exports.checkBillGenuine = function(req, res){
 	if (req.session.username) {
@@ -50,4 +50,4 @@ exports.checkBillGenuine = function(req, res){
 	else{
 		res.render('Customer/customerLogin',{"status":1});
 	}
-};*/
+};
